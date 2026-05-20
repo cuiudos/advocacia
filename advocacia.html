@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ferreira, Nunes & Associados | Advocacia e Consultoria Jurídica</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0C0C10;
+  --deep:#13131A;
+  --panel:#1A1A24;
+  --card:#20202E;
+  --gold:#C9A84C;
+  --gold2:#E2C97E;
+  --champagne:#F0E4C4;
+  --cream:#F7F2E8;
+  --muted:#8A8A9A;
+  --border:rgba(201,168,76,0.18);
+  --border2:rgba(255,255,255,0.07);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Lato',sans-serif;
+  background:var(--ink);
+  color:var(--champagne);
+  overflow-x:hidden;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:0.35;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  padding:0 5rem;height:72px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background 0.4s, backdrop-filter 0.4s;
+}
+nav.scrolled{
+  background:rgba(12,12,16,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:600;
+  color:var(--champagne);text-decoration:none;letter-spacing:0.04em;
+}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2.5rem;align-items:center}
+.nav-links a{
+  color:var(--muted);text-decoration:none;
+  font-size:0.78rem;font-weight:400;letter-spacing:0.1em;
+  text-transform:uppercase;cursor:pointer;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--champagne)}
+.nav-cta{
+  border:1px solid var(--gold)!important;
+  color:var(--gold)!important;
+  padding:0.45rem 1.4rem;border-radius:2px;
+  transition:all 0.2s!important;
+}
+.nav-cta:hover{background:var(--gold)!important;color:var(--ink)!important}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;position:relative;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 5rem;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 55%),
+    var(--ink);
+}
+.hero-line{
+  position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+  opacity:0.5;
+}
+.hero-content{position:relative;z-index:2;max-width:780px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  margin-bottom:2rem;
+}
+.hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold)}
+.hero-eyebrow span{
+  font-size:0.7rem;font-weight:700;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--gold);
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,6vw,6rem);
+  font-weight:400;line-height:1.05;
+  color:var(--cream);margin-bottom:1rem;
+  animation:fadeUp 0.9s ease both;
+}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{
+  font-size:clamp(0.95rem,1.5vw,1.1rem);
+  color:var(--muted);line-height:1.8;max-width:540px;
+  margin-bottom:3rem;font-weight:300;
+  animation:fadeUp 0.9s 0.15s ease both;
+}
+.hero-btns{
+  display:flex;gap:1.25rem;flex-wrap:wrap;
+  animation:fadeUp 0.9s 0.3s ease both;
+}
+.btn-gold{
+  background:var(--gold);color:var(--ink);
+  padding:0.95rem 2.25rem;
+  font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  cursor:pointer;border:none;
+  transition:all 0.22s;text-decoration:none;display:inline-block;
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
+}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-ghost{
+  background:transparent;color:var(--champagne);
+  padding:0.95rem 2.25rem;
+  font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  cursor:pointer;border:1px solid rgba(255,255,255,0.2);
+  transition:all 0.22s;
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{
+  position:absolute;right:5rem;bottom:3.5rem;z-index:2;
+  display:flex;flex-direction:column;gap:2rem;
+  border-left:1px solid var(--border);
+  padding-left:2rem;
+  animation:fadeLeft 0.9s 0.45s ease both;
+}
+.hstat .n{
+  font-family:'Playfair Display',serif;font-size:2.25rem;
+  font-weight:600;color:var(--cream);line-height:1;display:block;
+}
+.hstat .l{font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem}
+.scroll-hint{
+  position:absolute;bottom:2.5rem;left:5rem;z-index:2;
+  display:flex;align-items:center;gap:0.75rem;
+  font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);
+}
+.scroll-line{width:40px;height:1px;background:var(--muted)}
+
+/* ── SECTION COMMONS ── */
+section{position:relative;z-index:1}
+.s-wrap{max-width:1200px;margin:0 auto;padding:0 5rem}
+.gold-divider{
+  height:1px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+  opacity:0.35;margin:0 5rem;
+}
+.s-tag{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  margin-bottom:1.25rem;
+}
+.s-tag::before{content:'';display:block;width:30px;height:1px;background:var(--gold)}
+.s-tag span{font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold)}
+.s-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,3.5vw,3.25rem);
+  font-weight:400;color:var(--cream);line-height:1.15;
+}
+.s-title em{font-style:italic;color:var(--gold)}
+.s-sub{font-size:0.95rem;color:var(--muted);line-height:1.8;margin-top:0.75rem;font-weight:300}
+
+/* ── ABOUT ── */
+.about-sec{padding:8rem 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-top:4rem}
+.about-img{
+  position:relative;
+  aspect-ratio:4/5;
+  background:var(--panel);
+  border:1px solid var(--border2);
+  overflow:hidden;
+}
+.about-img img{width:100%;height:100%;object-fit:cover;opacity:0.6}
+.about-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(201,168,76,0.12) 0%,transparent 60%);
+}
+.about-badge{
+  position:absolute;bottom:-1.5rem;right:-1.5rem;
+  background:var(--gold);color:var(--ink);
+  width:110px;height:110px;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;z-index:2;
+}
+.about-badge .bn{font-size:2rem;font-weight:700;line-height:1}
+.about-badge .bl{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-align:center;margin-top:0.15rem}
+.about-text p{font-size:0.95rem;color:rgba(240,228,196,0.75);line-height:1.9;margin-bottom:1.5rem;font-weight:300}
+.about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
+.pillar{
+  border:1px solid var(--border);padding:1.25rem;
+  background:rgba(201,168,76,0.03);
+  transition:border-color 0.2s,background 0.2s;
+}
+.pillar:hover{border-color:rgba(201,168,76,0.4);background:rgba(201,168,76,0.06)}
+.pillar-ic{font-size:1.3rem;margin-bottom:0.5rem}
+.pillar h4{font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--champagne);margin-bottom:0.2rem}
+.pillar p{font-size:0.78rem;color:var(--muted);line-height:1.6}
+
+/* ── AREAS ── */
+.areas-sec{padding:8rem 0;background:var(--deep)}
+.areas-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:4rem}
+.areas-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border2);border:1px solid var(--border2);
+}
+.area-card{
+  background:var(--deep);padding:2rem 1.75rem;
+  cursor:pointer;transition:background 0.25s;
+  position:relative;overflow:hidden;
+}
+.area-card::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--gold),var(--gold2));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.3s;
+}
+.area-card:hover{background:var(--card)}
+.area-card:hover::before{transform:scaleX(1)}
+.area-num{
+  font-family:'Playfair Display',serif;font-size:2rem;
+  font-weight:400;color:rgba(201,168,76,0.15);
+  display:block;margin-bottom:0.75rem;line-height:1;
+  transition:color 0.25s;
+}
+.area-card:hover .area-num{color:rgba(201,168,76,0.35)}
+.area-ic{font-size:1.5rem;margin-bottom:0.75rem;display:block}
+.area-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:500;
+  color:var(--champagne);margin-bottom:0.5rem;line-height:1.25;
+}
+.area-desc{font-size:0.78rem;color:var(--muted);line-height:1.65}
+
+/* ── DIFERENCIAIS ── */
+.diff-sec{padding:8rem 0}
+.diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:4rem}
+.diff-card{text-align:center;padding:2.5rem 1.5rem;border:1px solid var(--border2);transition:border-color 0.25s,background 0.25s}
+.diff-card:hover{border-color:var(--border);background:rgba(201,168,76,0.03)}
+.diff-ic{
+  width:56px;height:56px;border:1px solid var(--border);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.25rem;font-size:1.4rem;
+  transition:border-color 0.25s,background 0.25s;
+}
+.diff-card:hover .diff-ic{border-color:var(--gold);background:rgba(201,168,76,0.08)}
+.diff-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--champagne);margin-bottom:0.65rem}
+.diff-card p{font-size:0.8rem;color:var(--muted);line-height:1.7}
+
+/* ── TEAM ── */
+.team-sec{padding:8rem 0;background:var(--deep)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem}
+.team-card{position:relative;overflow:hidden;background:var(--panel);border:1px solid var(--border2);cursor:pointer;group:true}
+.team-photo{aspect-ratio:3/4;overflow:hidden;background:var(--card)}
+.team-photo img{width:100%;height:100%;object-fit:cover;opacity:0.7;transition:opacity 0.35s,transform 0.5s;filter:grayscale(20%)}
+.team-card:hover .team-photo img{opacity:0.85;transform:scale(1.04)}
+.team-info{padding:1.5rem}
+.team-name{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--champagne)}
+.team-role{font-size:0.72rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem}
+.team-area{font-size:0.8rem;color:var(--muted);margin-top:0.5rem;line-height:1.5}
+.team-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,var(--gold),var(--gold2));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.3s;
+}
+.team-card:hover::after{transform:scaleX(1)}
+
+/* ── CONTATO ── */
+.contact-sec{padding:8rem 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;margin-top:4rem}
+.contact-info{}
+.contact-info p{font-size:0.95rem;color:rgba(240,228,196,0.7);line-height:1.9;font-weight:300;margin-bottom:2rem}
+.contact-items{display:flex;flex-direction:column;gap:1.5rem}
+.ci{display:flex;gap:1rem;align-items:flex-start}
+.ci-ic{
+  width:40px;height:40px;flex-shrink:0;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.ci-tx strong{display:block;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.2rem}
+.ci-tx span{font-size:0.9rem;color:var(--champagne)}
+.contact-form{background:var(--panel);padding:2.5rem;border:1px solid var(--border2)}
+.form-title{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--champagne);margin-bottom:0.4rem}
+.form-sub{font-size:0.8rem;color:var(--muted);margin-bottom:2rem}
+.form-row{margin-bottom:1.25rem}
+.form-row label{display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+.form-row input,.form-row textarea,.form-row select{
+  width:100%;background:rgba(255,255,255,0.04);
+  border:1px solid var(--border2);
+  padding:0.75rem 1rem;color:var(--champagne);
+  font-family:'Lato',sans-serif;font-size:0.9rem;
+  outline:none;transition:border-color 0.2s;
+}
+.form-row input:focus,.form-row textarea:focus,.form-row select:focus{border-color:var(--gold)}
+.form-row select option{background:var(--deep);color:var(--champagne)}
+.form-row textarea{resize:vertical;min-height:110px}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.btn-send{
+  background:var(--gold);color:var(--ink);
+  width:100%;padding:1rem;
+  font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  border:none;cursor:pointer;transition:all 0.22s;margin-top:0.5rem;
+}
+.btn-send:hover{background:var(--gold2)}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--deep);
+  border-top:1px solid var(--border2);
+  padding:4rem 5rem 2rem;
+}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.ft-logo{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--champagne);margin-bottom:0.75rem}
+.ft-logo span{color:var(--gold)}
+.ft-about{font-size:0.82rem;color:var(--muted);line-height:1.75}
+.ft-col h4{font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem}
+.ft-col a{display:block;font-size:0.82rem;color:var(--muted);text-decoration:none;margin-bottom:0.6rem;cursor:pointer;transition:color 0.18s}
+.ft-col a:hover{color:var(--champagne)}
+.ft-bottom{border-top:1px solid var(--border2);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center}
+.ft-bottom p{font-size:0.75rem;color:var(--muted)}
+.oab{font-size:0.75rem;color:var(--gold);font-weight:400}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  nav{padding:0 2rem}
+  .hero{padding:0 2rem}
+  .s-wrap{padding:0 2rem}
+  .gold-divider{margin:0 2rem}
+  .hero-stats{right:2rem}
+  .diff-grid{grid-template-columns:repeat(2,1fr)}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  footer{padding:3rem 2rem 2rem}
+  .contact-grid,.about-grid{grid-template-columns:1fr;gap:3rem}
+  .areas-intro{grid-template-columns:1fr;gap:1.5rem}
+}
+@media(max-width:768px){
+  nav{padding:0 1.25rem}
+  .nav-links{display:none}
+  .hero{padding:0 1.5rem;padding-top:72px}
+  .hero h1{font-size:clamp(2.2rem,8vw,3.5rem)}
+  .hero-stats{display:none}
+  .s-wrap{padding:0 1.5rem}
+  .gold-divider{margin:0 1.5rem}
+  .about-sec,.areas-sec,.diff-sec,.team-sec,.contact-sec{padding:5rem 0}
+  .areas-grid{grid-template-columns:1fr 1fr}
+  .diff-grid{grid-template-columns:1fr 1fr;gap:1rem}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  footer{padding:2.5rem 1.5rem 1.5rem}
+  .form-2col{grid-template-columns:1fr}
+  .about-pillars{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .areas-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+  .diff-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column}
+  .btn-gold,.btn-ghost{text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a class="nav-logo" href="#hero">Ferreira, Nunes <span>&</span> Associados</a>
+  <div class="nav-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#areas">Áreas</a>
+    <a href="#equipe">Equipe</a>
+    <a href="#contato" class="nav-cta">Agendar Consulta</a>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span>Advocacia & Consultoria Jurídica</span></div>
+    <h1>Excelência em<br>cada <em>causa,</em><br>precisão em<br>cada <em>detalhe.</em></h1>
+    <p class="hero-sub">Há mais de 25 anos defendendo os interesses de pessoas e empresas com ética, competência e dedicação absoluta. Soluções jurídicas sob medida para cada desafio.</p>
+    <div class="hero-btns">
+      <a href="#contato" class="btn-gold">Agendar Consulta</a>
+      <a href="#areas" class="btn-ghost">Nossas Áreas de Atuação</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><span class="n">+25</span><span class="l">Anos de Atuação</span></div>
+    <div class="hstat"><span class="n">+3.500</span><span class="l">Casos Atendidos</span></div>
+    <div class="hstat"><span class="n">13</span><span class="l">Áreas do Direito</span></div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div><span>Role para ver mais</span></div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ══════════ SOBRE ══════════ -->
+<section class="about-sec" id="sobre">
+  <div class="s-wrap">
+    <div class="about-grid">
+      <div style="position:relative">
+        <div class="about-img reveal">
+          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=700&auto=format&fit=crop&q=80" alt="Escritório">
+          <div class="about-badge"><span class="bn">25+</span><span class="bl">Anos de<br>Excelência</span></div>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <div class="s-tag"><span>Sobre o Escritório</span></div>
+        <h2 class="s-title">Tradição, <em>rigor</em> e compromisso com a justiça</h2>
+        <p style="margin-top:1.5rem">Fundado em 1999, o escritório Ferreira, Nunes & Associados consolidou-se como uma das referências em advocacia empresarial e contenciosa no Brasil. Nossa atuação se distingue pela profundidade técnica, pela abordagem estratégica e pelo comprometimento absoluto com os resultados de cada cliente.</p>
+        <p>Atendemos pessoas físicas, empresas de pequeno e grande porte, grupos econômicos e entidades públicas, com uma equipe multidisciplinar preparada para enfrentar os desafios jurídicos mais complexos do mercado atual.</p>
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="pillar-ic">⚖️</div>
+            <h4>Ética & Integridade</h4>
+            <p>Conduta irrepreensível em cada relação com clientes, adversários e o Judiciário.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-ic">🎯</div>
+            <h4>Estratégia Precisa</h4>
+            <p>Cada caso recebe análise profunda antes de qualquer movimentação jurídica.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-ic">🤝</div>
+            <h4>Relacionamento</h4>
+            <p>Parceria de longo prazo construída sobre transparência e resultados concretos.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-ic">📚</div>
+            <h4>Atualização Constante</h4>
+            <p>Equipe em permanente capacitação nas mais recentes mudanças legislativas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ══════════ ÁREAS DE ATUAÇÃO ══════════ -->
+<section class="areas-sec" id="areas">
+  <div class="s-wrap">
+    <div class="areas-intro">
+      <div class="reveal">
+        <div class="s-tag"><span>Especialidades</span></div>
+        <h2 class="s-title">Áreas de <em>Atuação</em></h2>
+      </div>
+      <div class="reveal">
+        <p class="s-sub">Atuamos em 13 especialidades do Direito, tanto na esfera contenciosa (judicial) quanto consultiva (preventiva), oferecendo soluções completas e integradas para cada necessidade jurídica.</p>
+      </div>
+    </div>
+  </div>
+  <div style="padding:0 5rem" class="reveal">
+  <div class="areas-grid">
+
+    <div class="area-card">
+      <span class="area-num">01</span>
+      <span class="area-ic">📜</span>
+      <div class="area-name">Direito Civil e Contratual</div>
+      <div class="area-desc">Responsabilidade civil, contratos, ações possessórias, execuções e demandas indenizatórias.</div>
+    </div>
+
+    <div class="area-card">
+      <span class="area-num">02</span>
+      <span class="area-ic">🏢</span>
+      <div class="area-name">Direito Empresarial</div>
+      <div class="area-desc">Fusões e aquisições, recuperação de empresas, falências, marcas, patentes e contratos societários.</div>
+    </div>
+
+    <div class="area-card">
+      <span class="area-num">03</span>
+      <span class="area-ic">👨‍👩‍👧</span>
+      <div class="area-name">Direito de Família e Sucessões</div>
+      <div class="area-desc">Divórcios, inventários, partilha de bens, guarda de filhos, alimentos e planejamento sucessório.</div>
+    </div>
+
+    <div class="area-card">
+      <span class="area-num">04</span>
+      <span class="area-ic">👷</span>
+      <div class="area-name">Direito do Trabalho</div>
+      <div class="area-desc">Atuação para empresas e empregados: reclamações trabalhistas, compliance e gestão de riscos laborais.</div>
+    </div>
+
+    <div class="area-card">
+      <span class="area-num">05</span>
+      <span class="area-ic">🛡️</span>
+      <div class="area-name">Direito do Consumidor</div>
+      <div class="area-desc">Defesa de consumidores e assessoria a empresas em relações de consumo, recalls e demandas coletivas.</div>
+    </div>
+
+    <div class="area-card">
+      <span class="area-num">06</span>
+      <span class="area-ic">💰</span>
+      <div class="area-name">Direito Tributário</div>
+      <div class="area-desc">Planejamento fiscal, contencioso administrativo e judicial, recuperação de créditos tributários.</div>
+    </div>
+
+    <div class="area-card">
+      <span class="area-num">07</span>
+      <span class="area-ic">⚖️</span>
+      <div class="area-name">Direito Penal</div>
+      <div class="area-desc">Defesa criminal, crimes empresariais, lavagem de dinheiro, crimes contra a ordem econômica.</div>
+    </div>
+
+    <div class="area-card">
+      <span class="area-num">08</span>
+      <span class="area-ic">🏠</span>
+      <div class="area-name">Direito Imobiliário</div>
+      <div class="area-desc">Compra e venda, locações, regularização de imóveis, incorporações e condomínios.</div>
+    </div>
+
+    <div class="area-card">
+      <span class="area-num">09</span>
+      <span class="area-ic">🧾</span>
+      <div class="area-name">Direito Previdenciário</div>
+      <div class="area-desc">Aposentadorias, benefícios por incapacidade, pensões, revisões de benefícios e planejamento previdenciário.</div>
+    </div>
+
+    <div class="area-card">
+      <span class="area-num">10</span>
+      <span class="area-ic">🏛️</span>
+      <div class="area-name">Direito Administrativo</div>
+      <div class="area-desc">Licitações, contratos administrativos, improbidade, concessões e relações com o poder público.</div>
+    </div>
+
+    <div class="area-card">
+      <span class="area-num">11</span>
+      <span class="area-ic">💻</span>
+      <div class="area-name">Direito Digital</div>
+      <div class="area-desc">LGPD, crimes cibernéticos, propriedade intelectual digital, contratos de TI e proteção de dados.</div>
+    </div>
+
+    <div class="area-card">
+      <span class="area-num">12</span>
+      <span class="area-ic">🌿</span>
+      <div class="area-name">Direito Ambiental</div>
+      <div class="area-desc">Licenciamento ambiental, responsabilidade por danos ambientais, ESG e compliance ambiental.</div>
+    </div>
+
+    <div class="area-card" style="grid-column:span 1">
+      <span class="area-num">13</span>
+      <span class="area-ic">✅</span>
+      <div class="area-name">Compliance</div>
+      <div class="area-desc">Programas de integridade, análise de risco, treinamentos, canais de denúncia e Lei Anticorrupção.</div>
+    </div>
+
+    <div class="area-card" style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.25);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2.5rem">
+      <div style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--champagne);margin-bottom:0.75rem">Tem alguma dúvida?</div>
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.6">Fale com nossos especialistas e descubra como podemos ajudar seu caso.</p>
+      <a href="#contato" class="btn-gold" style="font-size:0.72rem;padding:0.75rem 1.5rem">Falar com um Advogado</a>
+    </div>
+
+    <div class="area-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--card)">
+      <div style="font-family:'Playfair Display',serif;font-size:3rem;color:var(--gold);line-height:1">13</div>
+      <div style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.25rem">Especialidades</div>
+      <div style="width:30px;height:1px;background:var(--gold);margin:1rem auto"></div>
+      <div style="font-size:0.8rem;color:var(--muted)">Cobertura jurídica completa para todas as suas necessidades</div>
+    </div>
+
+  </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ══════════ DIFERENCIAIS ══════════ -->
+<section class="diff-sec">
+  <div class="s-wrap">
+    <div style="text-align:center;margin-bottom:1rem" class="reveal">
+      <div class="s-tag" style="justify-content:center"><span>Por que nos escolher</span></div>
+      <h2 class="s-title">Nossos <em>diferenciais</em></h2>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card reveal">
+        <div class="diff-ic">🏆</div>
+        <h3>Reconhecimento Nacional</h3>
+        <p>Classificados entre os principais escritórios de advocacia do Brasil por renomadas publicações jurídicas.</p>
+      </div>
+      <div class="diff-card reveal" style="transition-delay:0.1s">
+        <div class="diff-ic">🔬</div>
+        <h3>Análise Profunda</h3>
+        <p>Cada caso é estudado com rigor técnico e estratégia personalizada antes de qualquer movimentação.</p>
+      </div>
+      <div class="diff-card reveal" style="transition-delay:0.2s">
+        <div class="diff-ic">🌐</div>
+        <h3>Atuação em Todo Brasil</h3>
+        <p>Escritórios em São Paulo, Rio de Janeiro e Belo Horizonte, com correspondentes em todo o território nacional.</p>
+      </div>
+      <div class="diff-card reveal" style="transition-delay:0.3s">
+        <div class="diff-ic">🔒</div>
+        <h3>Sigilo Absoluto</h3>
+        <p>Compromisso integral com a confidencialidade e o segredo profissional em todas as relações.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ══════════ EQUIPE ══════════ -->
+<section class="team-sec" id="equipe">
+  <div class="s-wrap">
+    <div class="reveal">
+      <div class="s-tag"><span>Nossa Equipe</span></div>
+      <h2 class="s-title">Advogados <em>especializados,</em><br>resultados excepcionais</h2>
+      <p class="s-sub" style="max-width:520px;margin-top:0.75rem">Profissionais altamente qualificados, com formação em grandes centros acadêmicos e experiência consolidada nas mais diversas frentes jurídicas.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-photo">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&q=80" alt="Dr. Carlos Ferreira">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Dr. Carlos Ferreira</div>
+          <div class="team-role">Sócio Fundador</div>
+          <div class="team-area">Direito Empresarial · Direito Civil · Compliance</div>
+        </div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:0.1s">
+        <div class="team-photo">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80" alt="Dra. Mariana Nunes">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Dra. Mariana Nunes</div>
+          <div class="team-role">Sócia · Contencioso</div>
+          <div class="team-area">Direito Trabalhista · Previdenciário · Consumidor</div>
+        </div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:0.2s">
+        <div class="team-photo">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80" alt="Dr. Rafael Azevedo">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Dr. Rafael Azevedo</div>
+          <div class="team-role">Sócio · Tributário & Penal</div>
+          <div class="team-area">Direito Tributário · Penal · Administrativo</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem" class="reveal">
+      <p style="font-size:0.85rem;color:var(--muted)">Nossa equipe conta com mais de 30 advogados, incluindo especialistas em todas as 13 áreas de atuação.</p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ══════════ CONTATO ══════════ -->
+<section class="contact-sec" id="contato">
+  <div class="s-wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="s-tag"><span>Fale Conosco</span></div>
+        <h2 class="s-title">Agende sua<br><em>consulta</em></h2>
+        <p style="margin-top:1.5rem">Nossa primeira consulta é conduzida por advogados sêniores, com avaliação criteriosa do seu caso e indicação das melhores estratégias jurídicas disponíveis.</p>
+        <div class="contact-items">
+          <div class="ci">
+            <div class="ci-ic">📍</div>
+            <div class="ci-tx"><strong>Endereço</strong><span>Av. Paulista, 1000 · 15º andar · São Paulo, SP</span></div>
+          </div>
+          <div class="ci">
+            <div class="ci-ic">📞</div>
+            <div class="ci-tx"><strong>Telefone</strong><span>(11) 3000-0000</span></div>
+          </div>
+          <div class="ci">
+            <div class="ci-ic">✉️</div>
+            <div class="ci-tx"><strong>E-mail</strong><span>contato@ferreiraenunes.adv.br</span></div>
+          </div>
+          <div class="ci">
+            <div class="ci-ic">🕐</div>
+            <div class="ci-tx"><strong>Horário de Atendimento</strong><span>Segunda a Sexta · 8h às 18h</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal" style="transition-delay:0.15s">
+        <div class="form-title">Envie sua mensagem</div>
+        <div class="form-sub">Retornaremos em até 24 horas úteis.</div>
+        <div class="form-2col">
+          <div class="form-row"><label>Nome completo</label><input type="text" placeholder="Seu nome"></div>
+          <div class="form-row"><label>E-mail</label><input type="email" placeholder="seu@email.com"></div>
+        </div>
+        <div class="form-2col">
+          <div class="form-row"><label>Telefone</label><input type="tel" placeholder="(00) 00000-0000"></div>
+          <div class="form-row">
+            <label>Área de interesse</label>
+            <select>
+              <option value="">Selecione...</option>
+              <option>Direito Civil e Contratual</option>
+              <option>Direito Empresarial</option>
+              <option>Direito de Família e Sucessões</option>
+              <option>Direito do Trabalho</option>
+              <option>Direito do Consumidor</option>
+              <option>Direito Tributário</option>
+              <option>Direito Penal</option>
+              <option>Direito Imobiliário</option>
+              <option>Direito Previdenciário</option>
+              <option>Direito Administrativo</option>
+              <option>Direito Digital</option>
+              <option>Direito Ambiental</option>
+              <option>Compliance</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row"><label>Descreva brevemente seu caso</label><textarea placeholder="Conte-nos os detalhes da sua situação jurídica..."></textarea></div>
+        <button class="btn-send" onclick="enviarFormulario(this)">Enviar Mensagem →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="ft-logo">Ferreira, Nunes <span>&</span> Associados</div>
+      <p class="ft-about">Advocacia e Consultoria Jurídica com mais de 25 anos de atuação. Ética, excelência técnica e compromisso com resultados.</p>
+      <p class="oab" style="margin-top:1rem">OAB/SP nº 000.000 · OAB/RJ nº 000.000</p>
+    </div>
+    <div class="ft-col">
+      <h4>Áreas</h4>
+      <a>Civil e Contratual</a>
+      <a>Empresarial</a>
+      <a>Família e Sucessões</a>
+      <a>Trabalhista</a>
+      <a>Tributário</a>
+    </div>
+    <div class="ft-col">
+      <h4>Mais Áreas</h4>
+      <a>Penal</a>
+      <a>Imobiliário</a>
+      <a>Previdenciário</a>
+      <a>Administrativo</a>
+      <a>Direito Digital</a>
+    </div>
+    <div class="ft-col">
+      <h4>Escritório</h4>
+      <a href="#sobre">Sobre nós</a>
+      <a href="#equipe">Nossa equipe</a>
+      <a href="#contato">Contato</a>
+      <a>Publicações</a>
+      <a>Trabalhe conosco</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <p>© 2025 Ferreira, Nunes & Associados — Todos os direitos reservados.</p>
+    <p>Este site tem caráter meramente informativo e não constitui consulta jurídica.</p>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+// Reveal on scroll
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Smooth scroll for anchors
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+// Form
+function enviarFormulario(btn){
+  btn.textContent='✓ Mensagem enviada!';
+  btn.style.background='#4CAF50';
+  btn.style.color='white';
+  setTimeout(()=>{btn.textContent='Enviar Mensagem →';btn.style.background='';btn.style.color='';},3500);
+}
+</script>
+</body>
+</html>
